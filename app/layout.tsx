@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const display = Space_Grotesk({
@@ -26,7 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${display.variable} ${mono.variable}`}>{children}</body>
+      <body className={`${display.variable} ${mono.variable}`}>
+        {children}
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
