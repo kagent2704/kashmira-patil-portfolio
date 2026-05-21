@@ -769,6 +769,33 @@ export default function HomePage() {
                   <ArrowUpRight size={16} />
                   LinkedIn
                 </a>
+                <a
+                  className="hero-cta hero-cta-muted"
+                  href="https://www.kaggle.com/kashmirapatil"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <ArrowUpRight size={16} />
+                  Kaggle
+                </a>
+                <a
+                  className="hero-cta hero-cta-muted"
+                  href="https://medium.com/@kashmiraspatil/modern-ai-for-dummies-how-ai-detects-cyber-threats-using-lda-gnn-a9b67457b987"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <ArrowUpRight size={16} />
+                  Medium
+                </a>
+                <a
+                  className="hero-cta hero-cta-muted"
+                  href="https://credit-risk-intelligence-dashboard.streamlit.app"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <ArrowUpRight size={16} />
+                  Streamlit
+                </a>
               </div>
 
               <div className="mt-16 max-w-5xl text-center md:mx-auto">
@@ -896,14 +923,43 @@ export default function HomePage() {
                   Strategic and Content Head for the CDC Student Body, managing cross-functional execution and continuity.
                 </p>
               </div>
-              <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
-                <p className="text-sm uppercase tracking-[0.22em] text-blue-100/78">Operating principle</p>
-                <p className="mt-3 text-base leading-8 text-white/65">
-                  Build for traceability, speed, and consequences. Ship systems that someone can actually run.
-                </p>
+                <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
+                  <p className="text-sm uppercase tracking-[0.22em] text-blue-100/78">Operating principle</p>
+                  <p className="mt-3 text-base leading-8 text-white/65">
+                    Build for traceability, speed, and consequences. Ship systems that someone can actually run.
+                  </p>
+                </div>
+                <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
+                  <p className="text-sm uppercase tracking-[0.22em] text-blue-100/78">Live notebooks</p>
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    <a
+                      className="rounded-full border border-blue-300/20 bg-blue-300/8 px-4 py-2 text-sm text-blue-100/84 transition hover:border-blue-300/35 hover:bg-blue-300/12"
+                      href="https://www.kaggle.com/code/kashmirapatil/credit-risk-intelligence-system"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Credit Risk Intelligence
+                    </a>
+                    <a
+                      className="rounded-full border border-blue-300/20 bg-blue-300/8 px-4 py-2 text-sm text-blue-100/84 transition hover:border-blue-300/35 hover:bg-blue-300/12"
+                      href="https://www.kaggle.com/code/kashmirapatil/ai-powered-bitcoin-market-intelligence-system"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Bitcoin Market Intelligence
+                    </a>
+                    <a
+                      className="rounded-full border border-blue-300/20 bg-blue-300/8 px-4 py-2 text-sm text-blue-100/84 transition hover:border-blue-300/35 hover:bg-blue-300/12"
+                      href="https://www.kaggle.com/code/kashmirapatil/ai-powered-fraud-intelligence-system"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Fraud Intelligence
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
         </div>
       </section>
 
