@@ -38,6 +38,7 @@ type Project = {
   title: string;
   positioning: string;
   repoUrl?: string;
+  liveUrl?: string;
   diagramSrc: string;
   diagramAlt: string;
   problem: string;
@@ -111,46 +112,47 @@ const projects: Project[] = [
   {
     slug: "boardsight",
     eyebrow: "Mission 02",
-    title: "BoardSight",
-    positioning: "Governance intelligence from unstructured meetings.",
-    repoUrl: "https://github.com/kagent2704/BOARDSIGHT",
+    title: "BoardSight Copilot",
+    positioning: "Agentic meeting intelligence with approval-aware execution.",
+    repoUrl: "https://github.com/kagent2704/BOARDSIGHT_COPILOT",
+    liveUrl: "https://boardsight-copilot.vercel.app/",
     diagramSrc: "/diagrams/boardsight-diagram.png?v=20260518-2",
-    diagramAlt: "BoardSight workflow and decision intelligence diagram",
+    diagramAlt: "BoardSight Copilot workflow and meeting intelligence agent diagram",
     problem:
-      "Critical meeting outcomes often vanish into video archives and informal notes. BoardSight converted discussion into traceable decision records with integrity built in.",
+      "Critical meeting outcomes often vanish into recordings, scattered notes, and unowned follow-ups. BoardSight Copilot turns uploaded or live meetings into structured intelligence, then lets an agent surface, preview, and approve downstream action plans.",
     impact: [
-      "Captured speaker dominance at roughly 90% accuracy.",
-      "Mapped decisions to timestamps and workflow traces.",
-      "Produced JSON and PDF outputs with SHA-256-backed audit integrity.",
+      "Analyzes recorded and live meeting sessions through a multimodal AI pipeline.",
+      "Exports JSON, Markdown, PDF, XLSX, transcript CSV, and summary image outputs for review and handoff.",
+      "Exposes six approval-aware agent endpoints so actions can be previewed before execution.",
     ],
-    stack: ["Computer Vision", "NLP", "OpenCV", "MediaPipe", "PyTorch", "FastAPI"],
+    stack: ["FastAPI", "faster-whisper", "CLIP", "DeepFace", "YOLO", "Google Agent Builder"],
     metrics: [
-      { value: 90, suffix: "%", label: "Speaker accuracy" },
-      { value: 1, prefix: "<=", suffix: "s/frame", label: "Processing time" },
-      { value: 30, prefix: "~", suffix: "s", label: "Full trace generation" },
+      { value: 6, label: "Agent APIs" },
+      { value: 6, label: "Export formats" },
+      { value: 2, label: "Recorded + live modes" },
     ],
     layers: [
-      { title: "Ingestion", detail: "Meeting video and audio streams captured as raw, unstructured evidence." },
-      { title: "Processing", detail: "Speaker detection, diarization cues, and contextual phrase extraction." },
-      { title: "Model", detail: "Decision-identification logic tied to workflow and escalation mapping." },
-      { title: "Serving", detail: "Structured report generation with audit artifacts and export pathways." },
-      { title: "Dashboard", detail: "Human-readable trace views for accountability, approvals, and governance review." },
+      { title: "Ingestion", detail: "Recorded uploads and live meeting sessions enter as multimodal evidence streams." },
+      { title: "Processing", detail: "ASR, visual classification, speaker activity, emotion, attention, and workflow extraction run through the AI pipeline." },
+      { title: "Model", detail: "Decision and action understanding are grounded into agent-ready context rather than loose summaries." },
+      { title: "Serving", detail: "FastAPI-backed endpoints expose capabilities, context, execution previews, approvals, and status retrieval." },
+      { title: "Dashboard", detail: "A copilot interface lets users review meetings, inspect traces, and approve the next operational step." },
     ],
     story: [
       {
         title: "Problem Surface",
         body:
-          "Organizations rarely fail because data is absent. They fail because decisions are not traceable. BoardSight treated meetings as operational input, not passive recordings.",
+          "Organizations do not just need better meeting notes. They need a system that can understand what happened, identify what matters, and hold off on execution until a human approves the next step.",
       },
       {
         title: "System Design",
         body:
-          "I broke the workflow into perception, decision detection, workflow mapping, and reporting layers so governance logic could stay explainable from source input to final record.",
+          "BoardSight Copilot separates meeting ingestion, multimodal understanding, structured context assembly, and agent-facing execution previews so the system can move from analysis into action without becoming opaque.",
       },
       {
         title: "Operational Outcome",
         body:
-          "The platform turned ambiguous conversations into evidence-backed decision trails, complete with timestamps, dominance signals, and tamper-evident logs.",
+          "The result is an actual AI agent for meetings: one that can answer against grounded meeting context, generate exports, and prepare downstream actions through approval-aware workflows instead of hallucinated automation.",
       },
     ],
   },
@@ -303,8 +305,8 @@ const capabilities: Capability[] = [
   },
   {
     title: "Decision Intelligence",
-    summary: "Best shown through a system that converts human activity into structured, explainable outputs and decisions.",
-    href: "https://github.com/kagent2704/BOARDSIGHT",
+    summary: "Best shown through an agent that turns meetings into grounded context, structured outputs, and approval-aware execution plans.",
+    href: "https://github.com/kagent2704/BOARDSIGHT_COPILOT",
     external: true,
     cta: "Open Repo",
   },
@@ -539,11 +541,22 @@ function MissionSection({ project, index }: { project: Project; index: number })
                 <ArrowUpRight size={14} />
               </a>
             ) : null}
+            {project.liveUrl ? (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-blue-300/20 bg-blue-300/8 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.24em] text-blue-100/85 transition hover:border-blue-300/35 hover:bg-blue-300/12"
+              >
+                Open Agent
+                <ArrowUpRight size={14} />
+              </a>
+            ) : null}
             <a
               href={project.diagramSrc}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-blue-300/20 bg-blue-300/8 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.24em] text-blue-100/85 transition hover:border-blue-300/35 hover:bg-blue-300/12"
+              className="inline-flex items-center gap-2 rounded-full border border-blue-300/12 bg-blue-300/6 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.24em] text-blue-100/78 transition hover:border-blue-300/25 hover:bg-blue-300/10"
             >
               Open Diagram
               <ArrowUpRight size={14} />
