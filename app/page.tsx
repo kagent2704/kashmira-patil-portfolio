@@ -770,9 +770,13 @@ export default function HomePage() {
                 <a className="hero-cta" href="#missions">
                   View Mission Projects
                 </a>
-                <a className="hero-cta hero-cta-muted" href="/KASHMIRA_PATIL_RESUME.pdf" download>
+                <a className="hero-cta hero-cta-muted" href="/KASHMIRA_PATIL_RESUME_SDE_AI.pdf" download>
                   <FileDown size={16} />
-                  Download Resume
+                  Resume - AI / SDE
+                </a>
+                <a className="hero-cta hero-cta-muted" href="/KASHMIRA_PATIL_RESUME_ANALYTICS.pdf" download>
+                  <FileDown size={16} />
+                  Resume - Analytics
                 </a>
                 <a className="hero-cta hero-cta-muted" href="http://www.github.com/kagent2704" target="_blank" rel="noreferrer">
                   <ArrowUpRight size={16} />
