@@ -833,7 +833,7 @@ export default function HomePage() {
           <div className="top-shell">
             <div className="flex items-center gap-3">
               <span className="status-dot" />
-              <span>Operational AI Systems Portfolio</span>
+              <span>Kashmira Patil / Systems Engineer</span>
             </div>
             <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-white/45">Data / ML / Backend / Automation</div>
           </div>
@@ -842,11 +842,11 @@ export default function HomePage() {
             <div>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-300/20 bg-blue-300/8 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.28em] text-blue-100/80">
                 <span className="status-dot" />
-                Mission-ready portfolio
+                Independent systems engineer
               </div>
 
               <div className="space-y-3">
-                <p className="boot-line section-kicker">Mission profile</p>
+                <p className="boot-line section-kicker">Selected work / 2025-2026</p>
                 <h1 className="boot-line max-w-4xl text-[3rem] font-medium leading-[0.95] tracking-[-0.04em] text-white md:text-[7rem]">
                   Kashmira Patil
                 </h1>
@@ -861,7 +861,7 @@ export default function HomePage() {
 
               <div className="mt-10 flex flex-wrap gap-3">
                 <a className="hero-cta" href="#missions">
-                  View Mission Projects
+                  Explore projects
                 </a>
                 <a className="hero-cta hero-cta-muted" href="/KASHMIRA_PATIL_RESUME_SDE_AI.pdf" download>
                   <FileDown size={16} />
@@ -909,9 +909,9 @@ export default function HomePage() {
               </div>
 
               <div className="mt-16 max-w-5xl text-center md:mx-auto">
-                <p className="font-mono text-[11px] uppercase tracking-[0.36em] text-white/38">Primary directive</p>
+                <p className="font-mono text-[11px] uppercase tracking-[0.36em] text-white/38">Working principle</p>
                 <p className="mt-4 text-4xl font-medium leading-tight tracking-[-0.04em] text-white md:text-7xl">
-                  Building systems where data becomes action.
+                  Make complex systems useful.
                 </p>
                 <p className="mt-4 text-sm uppercase tracking-[0.28em] text-white/42">
                   Real-time ML. Operational workflows. Decision intelligence.
@@ -920,10 +920,18 @@ export default function HomePage() {
             </div>
 
             <div className="relative">
+              <div className="system-orbit" aria-hidden="true">
+                <div className="orbit-ring orbit-ring-one" />
+                <div className="orbit-ring orbit-ring-two" />
+                <div className="orbit-core">AI<br />SYSTEMS</div>
+                <span className="orbit-node orbit-node-one" />
+                <span className="orbit-node orbit-node-two" />
+                <span className="orbit-node orbit-node-three" />
+              </div>
               <div className="hero-panel">
                 <div className="hero-panel-header">
-                  <span>Achievement archive</span>
-                  <span>Live dossier</span>
+                  <span>Outside the code</span>
+                  <span>Selected signals</span>
                 </div>
                 <div className="grid gap-3">
                   {achievementSignals.map((signal, index) => {
