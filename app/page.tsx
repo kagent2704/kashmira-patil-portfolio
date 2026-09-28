@@ -387,51 +387,6 @@ const projects: Project[] = [
       },
     ],
   },
-  {
-    slug: "athena",
-    eyebrow: "Mission 08",
-    title: "ATHENA",
-    positioning: "Evidence-first content operations with human-controlled publishing.",
-    diagramSrc: "/diagrams/athena-diagram.svg?v=20260928-1",
-    diagramAlt: "ATHENA evidence-first content operations workflow",
-    problem:
-      "Short-form content production often jumps from a headline to a script and publication without a durable evidence trail. ATHENA turns research, editorial review, packaging, and publishing into an explicit workflow.",
-    impact: [
-      "Implemented local topic discovery, source collection, evidence storage, and editorial quality gates.",
-      "Generates scripts, captions, visual plans, metadata, and review packages for Shorts production.",
-      "Keeps approval and provider-bound publishing explicit instead of allowing unattended uploads by default.",
-    ],
-    stack: ["Python", "SQLite", "RSS Research", "React", "Vite", "YouTube Adapter"],
-    metrics: [
-      { value: 10, label: "Backend tests" },
-      { value: 12, label: "Evidence sources" },
-      { value: 1, display: "Human", label: "Approval gate" },
-    ],
-    layers: [
-      { title: "Discover", detail: "Niche signals and candidate topics enter a durable content-job ledger." },
-      { title: "Research", detail: "Attributed sources are collected, normalized, and retained as an evidence pack." },
-      { title: "Quality", detail: "Research, editorial, runtime, render, and rights checks expose gaps before approval." },
-      { title: "Package", detail: "Scripts, captions, visual plans, metadata, and rendered drafts are assembled for review." },
-      { title: "Publish", detail: "Provider-bound upload remains guarded behind explicit approval and configured credentials." },
-    ],
-    story: [
-      {
-        title: "Problem Surface",
-        body:
-          "The risky part of content automation is not generating text. It is allowing weakly sourced claims and unattended publishing to move faster than human review.",
-      },
-      {
-        title: "System Design",
-        body:
-          "ATHENA models the workflow as a stateful ledger: discover a topic, collect evidence, run quality gates, generate a package, obtain approval, and only then cross a provider boundary.",
-      },
-      {
-        title: "Operational Outcome",
-        body:
-          "The MVP provides a repeatable content command center while keeping provenance, compliance, and operator control visible at every transition.",
-      },
-    ],
-  },
 ];
 
 const capabilities: Capability[] = [
