@@ -294,6 +294,144 @@ const projects: Project[] = [
       },
     ],
   },
+  {
+    slug: "marine-plankton-ai",
+    eyebrow: "Mission 06",
+    title: "Marine Plankton AI Microscopy",
+    positioning: "Edge computer vision for real-time aquatic microscopy analysis.",
+    repoUrl: "https://github.com/Ayush-Kadali/plankton-rpi-dev",
+    diagramSrc: "/diagrams/plankton-diagram.svg?v=20260928-1",
+    diagramAlt: "Marine plankton AI microscopy edge inference pipeline",
+    problem:
+      "Marine microscopy produces more visual data than a person can reliably inspect frame by frame. This system connects acquisition, organism detection, tracking, analytics, and deployment paths for field-oriented observations.",
+    impact: [
+      "Combined classification and YOLO detection paths for organism recognition and localization.",
+      "Added ONNX and TorchScript inference paths for CPU-oriented edge deployment.",
+      "Delivered Streamlit dashboards with live visualization, counts, diversity metrics, maps, and exports.",
+    ],
+    stack: ["YOLO", "EfficientNetB0", "ONNX Runtime", "Streamlit", "Raspberry Pi", "Computer Vision"],
+    metrics: [
+      { value: 83.48, suffix: "%", decimals: 2, label: "Validation accuracy" },
+      { value: 2, display: "2+", label: "Inference paths" },
+      { value: 7, label: "Pipeline modules" },
+    ],
+    layers: [
+      { title: "Acquisition", detail: "Microscope images, video, or live camera frames enter the analysis workflow." },
+      { title: "Inference", detail: "Classification and object-detection models identify organisms and locations in each frame." },
+      { title: "Tracking", detail: "Temporal association reduces duplicate counting across consecutive frames." },
+      { title: "Analytics", detail: "Counts, diversity metrics, maps, and structured exports turn detections into observations." },
+      { title: "Edge Serving", detail: "ONNX, TorchScript, and Raspberry Pi paths support portable CPU-oriented deployment." },
+    ],
+    story: [
+      {
+        title: "Problem Surface",
+        body:
+          "A useful microscopy system must do more than classify a still image. It needs to handle live inputs, preserve provenance, avoid double counting, and expose results to researchers in a form they can inspect.",
+      },
+      {
+        title: "System Design",
+        body:
+          "The project separates acquisition, preprocessing, model inference, tracking, analytics, and presentation so a model or runtime can be replaced without rebuilding the entire product.",
+      },
+      {
+        title: "Operational Outcome",
+        body:
+          "The result is an edge-oriented computer-vision workflow that connects model outputs to live visualization, ecological summaries, and deployment-ready artifacts.",
+      },
+    ],
+  },
+  {
+    slug: "careeros",
+    eyebrow: "Mission 07",
+    title: "CareerOS",
+    positioning: "A private career operating system for applications, evidence, and decisions.",
+    repoUrl: "https://github.com/kagent2704/CareerOS",
+    liveUrl: "https://career-os-coral.vercel.app/",
+    diagramSrc: "/diagrams/careeros-diagram.svg?v=20260928-1",
+    diagramAlt: "CareerOS application tracking and AI matching workflow",
+    problem:
+      "Job searches fragment applications, resumes, interview preparation, inbox signals, and recruiter feedback across disconnected tools. CareerOS turns that search into a private, traceable workspace.",
+    impact: [
+      "Tracks the complete application lifecycle instead of hiding earlier assessments and interviews after rejection.",
+      "Ranks live employer job feeds against an evidence-only candidate profile and role preferences.",
+      "Generates transparent AI match reports with strengths, gaps, recruiter objections, and interview priorities.",
+    ],
+    stack: ["Next.js", "Supabase", "Gemini", "Greenhouse Feeds", "Gmail Metadata", "Vercel"],
+    metrics: [
+      { value: 100, suffix: "pt", label: "Recruiter rubric" },
+      { value: 1, display: "Full", label: "Application timeline" },
+      { value: 1, display: "Private", label: "Account workspace" },
+    ],
+    layers: [
+      { title: "Workspace", detail: "Applications, jobs, companies, interviews, networking, resumes, and documents live in one account." },
+      { title: "Evidence", detail: "Resume versions, milestones, notes, job sources, and recruiter signals remain attached to the relevant record." },
+      { title: "Matching", detail: "A selected resume and job description become a transparent, evidence-backed recruiter rubric." },
+      { title: "Automation", detail: "Live job feeds and optional Gmail metadata reduce repetitive search and inbox triage." },
+      { title: "Decision Surface", detail: "Dashboards and timelines show what changed, what is next, and where preparation effort matters." },
+    ],
+    story: [
+      {
+        title: "Problem Surface",
+        body:
+          "Career planning is a data-management problem as much as a motivation problem. Important context disappears when applications, versions of a resume, and interview milestones are stored in separate places.",
+      },
+      {
+        title: "System Design",
+        body:
+          "CareerOS uses a private account workspace, durable application events, evidence-aware AI analysis, and live source labels so the user can distinguish stored history from current external data.",
+      },
+      {
+        title: "Operational Outcome",
+        body:
+          "The product makes a job search inspectable: every opportunity has a history, every match has reasons, and every next action can be grounded in the evidence already collected.",
+      },
+    ],
+  },
+  {
+    slug: "athena",
+    eyebrow: "Mission 08",
+    title: "ATHENA",
+    positioning: "Evidence-first content operations with human-controlled publishing.",
+    diagramSrc: "/diagrams/athena-diagram.svg?v=20260928-1",
+    diagramAlt: "ATHENA evidence-first content operations workflow",
+    problem:
+      "Short-form content production often jumps from a headline to a script and publication without a durable evidence trail. ATHENA turns research, editorial review, packaging, and publishing into an explicit workflow.",
+    impact: [
+      "Implemented local topic discovery, source collection, evidence storage, and editorial quality gates.",
+      "Generates scripts, captions, visual plans, metadata, and review packages for Shorts production.",
+      "Keeps approval and provider-bound publishing explicit instead of allowing unattended uploads by default.",
+    ],
+    stack: ["Python", "SQLite", "RSS Research", "React", "Vite", "YouTube Adapter"],
+    metrics: [
+      { value: 10, label: "Backend tests" },
+      { value: 12, label: "Evidence sources" },
+      { value: 1, display: "Human", label: "Approval gate" },
+    ],
+    layers: [
+      { title: "Discover", detail: "Niche signals and candidate topics enter a durable content-job ledger." },
+      { title: "Research", detail: "Attributed sources are collected, normalized, and retained as an evidence pack." },
+      { title: "Quality", detail: "Research, editorial, runtime, render, and rights checks expose gaps before approval." },
+      { title: "Package", detail: "Scripts, captions, visual plans, metadata, and rendered drafts are assembled for review." },
+      { title: "Publish", detail: "Provider-bound upload remains guarded behind explicit approval and configured credentials." },
+    ],
+    story: [
+      {
+        title: "Problem Surface",
+        body:
+          "The risky part of content automation is not generating text. It is allowing weakly sourced claims and unattended publishing to move faster than human review.",
+      },
+      {
+        title: "System Design",
+        body:
+          "ATHENA models the workflow as a stateful ledger: discover a topic, collect evidence, run quality gates, generate a package, obtain approval, and only then cross a provider boundary.",
+      },
+      {
+        title: "Operational Outcome",
+        body:
+          "The MVP provides a repeatable content command center while keeping provenance, compliance, and operator control visible at every transition.",
+      },
+    ],
+  },
 ];
 
 const capabilities: Capability[] = [
