@@ -121,11 +121,11 @@ const projects: Project[] = [
     problem:
       "Critical meeting outcomes often vanish into recordings, scattered notes, and unowned follow-ups. BoardSight Copilot turns uploaded or live meetings into structured intelligence, then lets an agent surface, preview, and approve downstream action plans.",
     impact: [
-      "Analyzes recorded and live meeting sessions through a multimodal AI pipeline.",
+      "Runs a stable production path for recorded meetings with fast transcription, sparse visual sampling, person detection, and workflow extraction.",
       "Exports JSON, Markdown, PDF, XLSX, transcript CSV, and summary image outputs for review and handoff.",
-      "Exposes six approval-aware agent endpoints so actions can be previewed before execution.",
+      "Exposes approval-aware agent capabilities so meeting-grounded actions can be previewed before execution.",
     ],
-    stack: ["FastAPI", "faster-whisper", "CLIP", "DeepFace", "YOLO", "Google Agent Builder"],
+    stack: ["FastAPI", "faster-whisper", "Sparse CV", "Workflow Extraction", "Gemini", "Cloud Run"],
     metrics: [
       { value: 6, label: "Agent APIs" },
       { value: 6, label: "Export formats" },
@@ -147,7 +147,7 @@ const projects: Project[] = [
       {
         title: "System Design",
         body:
-          "BoardSight Copilot separates meeting ingestion, multimodal understanding, structured context assembly, and agent-facing execution previews so the system can move from analysis into action without becoming opaque.",
+          "BoardSight Copilot separates meeting ingestion, lightweight production analysis, structured context assembly, and agent-facing execution previews so the system can move from analysis into action without becoming opaque.",
       },
       {
         title: "Operational Outcome",
