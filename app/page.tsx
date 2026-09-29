@@ -17,6 +17,9 @@ import {
 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, Float, Line } from "@react-three/drei";
+import * as THREE from "three";
 
 type Metric = {
   label: string;
@@ -62,6 +65,71 @@ type AwardImage = {
   file: string;
   note?: string;
 };
+
+const systemNodes = [
+  [-1.45, 0.55, 0.1],
+  [-0.55, 1.05, -0.25],
+  [0.45, 0.65, 0.18],
+  [1.35, 0.1, -0.15],
+  [0.75, -0.8, 0.25],
+  [-0.45, -0.95, -0.1],
+  [-1.35, -0.35, 0.2],
+] as const;
+
+function NetworkObject() {
+  const group = useRef<THREE.Group>(null);
+
+  useFrame((state, delta) => {
+    if (!group.current) return;
+    group.current.rotation.y += delta * 0.12;
+    group.current.rotation.x = THREE.MathUtils.lerp(group.current.rotation.x, state.pointer.y * 0.12, 0.03);
+    group.current.rotation.z = THREE.MathUtils.lerp(group.current.rotation.z, -state.pointer.x * 0.1, 0.03);
+  });
+
+  return (
+    <group ref={group} scale={1.15}>
+      {systemNodes.map((position, index) => (
+        <mesh key={index} position={position}>
+          <sphereGeometry args={[index === 2 ? 0.16 : 0.1, 20, 20]} />
+          <meshStandardMaterial
+            color={index === 2 ? "#d7ff7a" : "#a5c7ff"}
+            emissive={index === 2 ? "#8db52c" : "#34537f"}
+            emissiveIntensity={index === 2 ? 2.4 : 1.4}
+            roughness={0.35}
+          />
+        </mesh>
+      ))}
+      {systemNodes.slice(1).map((position, index) => (
+        <Line
+          key={`line-${index}`}
+          points={[systemNodes[0], position]}
+          color={index === 1 ? "#d7ff7a" : "#7197cf"}
+          transparent
+          opacity={0.55}
+          lineWidth={1}
+        />
+      ))}
+      <Line points={[systemNodes[1], systemNodes[2], systemNodes[4], systemNodes[5], systemNodes[1]]} color="#d7ff7a" transparent opacity={0.42} lineWidth={1} />
+    </group>
+  );
+}
+
+function SystemScene() {
+  return (
+    <div className="real-3d-scene" aria-label="Interactive 3D systems network">
+      <Canvas camera={{ position: [0, 0, 4.4], fov: 42 }} dpr={[1, 1.5]}>
+        <ambientLight intensity={0.45} />
+        <pointLight position={[2, 2, 3]} intensity={10} color="#d7ff7a" />
+        <pointLight position={[-3, -1, 2]} intensity={7} color="#8eb4ff" />
+        <Float speed={1.2} rotationIntensity={0.12} floatIntensity={0.18}>
+          <NetworkObject />
+        </Float>
+        <OrbitControls enableZoom={false} enablePan={false} autoRotate={false} />
+      </Canvas>
+      <span className="scene-caption">interactive system map / drag to inspect</span>
+    </div>
+  );
+}
 
 const projects: Project[] = [
   {
@@ -920,14 +988,7 @@ export default function HomePage() {
             </div>
 
             <div className="relative">
-              <div className="system-orbit" aria-hidden="true">
-                <div className="orbit-ring orbit-ring-one" />
-                <div className="orbit-ring orbit-ring-two" />
-                <div className="orbit-core">AI<br />SYSTEMS</div>
-                <span className="orbit-node orbit-node-one" />
-                <span className="orbit-node orbit-node-two" />
-                <span className="orbit-node orbit-node-three" />
-              </div>
+              <SystemScene />
               <div className="hero-panel">
                 <div className="hero-panel-header">
                   <span>Outside the code</span>
@@ -996,11 +1057,21 @@ export default function HomePage() {
       <HorizontalCapabilityRail />
 
       <section id="missions" className="mx-auto max-w-[1600px] px-5 pb-6 pt-20 md:px-8">
-        <p className="section-kicker">Featured Mission Projects</p>
+        <p className="section-kicker">Selected systems</p>
         <h2 className="mt-5 max-w-4xl text-4xl font-medium tracking-[-0.04em] text-white md:text-6xl">
-          Proof that complex inputs can be modeled, operationalized, and pushed into decision-ready systems.
+          Systems built for the messy middle between data and action.
         </h2>
       </section>
+
+      <nav className="project-index" aria-label="Project index">
+        <span className="project-index-label">Browse work</span>
+        {projects.map((project, index) => (
+          <a key={project.slug} href={`#${project.slug}`}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            {project.title}
+          </a>
+        ))}
+      </nav>
 
       {projects.map((project, index) => (
         <MissionSection key={project.slug} project={project} index={index} />

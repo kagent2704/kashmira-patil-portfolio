@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #05070b;
+  --bg: #111311;
   --panel: rgba(255, 255, 255, 0.04);
-  --border: rgba(255, 255, 255, 0.1);
-  --text-dim: rgba(239, 244, 255, 0.64);
-  --accent: #8ab4ff;
-  --accent-soft: #c9d8ff;
-  --accent-glow: rgba(138, 180, 255, 0.22);
-  --accent-border: rgba(138, 180, 255, 0.24);
+  --border: rgba(230, 237, 219, 0.14);
+  --text-dim: rgba(243, 241, 225, 0.64);
+  --accent: #d7ff7a;
+  --accent-soft: #efffc8;
+  --accent-glow: rgba(215, 255, 122, 0.2);
+  --accent-border: rgba(215, 255, 122, 0.28);
 }
 
 * {
@@ -23,8 +23,9 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at top, rgba(18, 28, 44, 0.92), transparent 42%),
-    linear-gradient(180deg, #06080c 0%, #04060a 100%);
+    radial-gradient(circle at 78% 4%, rgba(215, 255, 122, 0.08), transparent 24%),
+    radial-gradient(circle at top left, rgba(47, 68, 52, 0.38), transparent 38%),
+    linear-gradient(180deg, #121512 0%, #0b0e0c 100%);
   color: white;
   font-family: var(--font-display), sans-serif;
 }
@@ -59,81 +60,73 @@ body::after {
 
 /* A single spatial system graphic gives the homepage depth without turning every
    surface into a spectacle. It is intentionally CSS-only and respects reduced motion. */
-.system-orbit {
+.real-3d-scene {
   position: absolute;
   z-index: 0;
   top: -4.5rem;
   right: -2rem;
   width: 19rem;
   height: 19rem;
-  pointer-events: none;
-  opacity: 0.8;
-  transform: rotate(-12deg);
+  opacity: 0.9;
+  cursor: grab;
 }
 
-.orbit-ring,
-.orbit-core,
-.orbit-node {
-  position: absolute;
-  display: block;
+.real-3d-scene:active { cursor: grabbing; }
+.scene-caption { position: absolute; bottom: 0.5rem; right: 0.5rem; color: rgba(215, 255, 122, 0.65); font: 9px var(--font-mono), monospace; letter-spacing: 0.12em; text-transform: uppercase; }
+
+.project-index {
+  position: sticky;
+  z-index: 20;
+  top: 0.75rem;
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+  width: min(100% - 2.5rem, 1540px);
+  margin: 1rem auto 2rem;
+  padding: 0.55rem;
+  overflow-x: auto;
+  border: 1px solid rgba(230, 237, 219, 0.14);
+  border-radius: 999px;
+  background: rgba(16, 21, 17, 0.84);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(18px);
 }
 
-.orbit-ring {
-  inset: 2rem;
-  border: 1px solid rgba(138, 180, 255, 0.26);
-  border-radius: 50%;
-  transform: rotateX(68deg) rotateZ(15deg);
-  box-shadow: 0 0 40px rgba(138, 180, 255, 0.1);
-  animation: orbit-spin 16s linear infinite;
+.project-index-label {
+  flex: 0 0 auto;
+  padding: 0 0.8rem;
+  color: rgba(243, 241, 225, 0.42);
+  font: 10px var(--font-mono), monospace;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
-.orbit-ring-two {
-  inset: 3.8rem 1.2rem;
-  border-color: rgba(115, 201, 161, 0.24);
-  transform: rotateY(68deg) rotateZ(-20deg);
-  animation-duration: 12s;
-  animation-direction: reverse;
+.project-index a {
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 0.45rem;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.55rem 0.75rem;
+  color: rgba(243, 241, 225, 0.62);
+  font-size: 0.78rem;
+  transition: color 160ms ease, background 160ms ease, border-color 160ms ease;
 }
 
-.orbit-core {
-  inset: 6.4rem;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(219, 234, 254, 0.42);
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #789bd2, #1c2a44 45%, #0a101b 78%);
-  color: #eef5ff;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.55rem;
-  letter-spacing: 0.16em;
-  line-height: 1.5;
-  text-align: center;
-  box-shadow: 0 0 50px rgba(138, 180, 255, 0.24), inset 0 0 24px rgba(255, 255, 255, 0.12);
+.project-index a span {
+  color: rgba(215, 255, 122, 0.62);
+  font: 10px var(--font-mono), monospace;
 }
 
-.orbit-node {
-  width: 0.55rem;
-  height: 0.55rem;
-  border: 2px solid #9fc2ff;
-  border-radius: 50%;
-  background: #09111d;
-  box-shadow: 0 0 16px rgba(138, 180, 255, 0.9);
-  animation: node-pulse 2.4s ease-in-out infinite;
-}
-
-.orbit-node-one { top: 2rem; left: 8rem; }
-.orbit-node-two { right: 2.2rem; top: 8.4rem; animation-delay: 0.7s; }
-.orbit-node-three { bottom: 2.5rem; left: 4.1rem; animation-delay: 1.4s; }
-
-@keyframes orbit-spin { to { transform: rotateX(68deg) rotateZ(375deg); } }
-@keyframes node-pulse { 50% { transform: scale(1.5); opacity: 0.6; } }
-
-@media (prefers-reduced-motion: reduce) {
-  .orbit-ring, .orbit-node { animation: none; }
+.project-index a:hover {
+  border-color: rgba(215, 255, 122, 0.22);
+  background: rgba(215, 255, 122, 0.08);
+  color: #efffc8;
 }
 
 @media (max-width: 900px) {
-  .system-orbit { top: -3rem; right: -3rem; transform: scale(0.72) rotate(-12deg); transform-origin: top right; opacity: 0.5; }
+  .real-3d-scene { top: -3rem; right: -3rem; transform: scale(0.72); transform-origin: top right; opacity: 0.5; }
 }
 
 a {
