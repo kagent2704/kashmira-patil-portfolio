@@ -622,13 +622,13 @@ function ArchitectureDiagram({ layers, slug }: { layers: Layer[]; slug: string }
 
 function HorizontalCapabilityRail() {
   return (
-    <section className="relative border-y border-white/8 bg-[#06080d] py-14 md:py-18">
+    <section className="capability-rail relative border-y border-white/8 py-14 md:py-18">
       <div className="mx-auto max-w-[1600px] px-5 md:px-8">
         <div className="mb-8 flex items-end justify-between">
           <div>
-            <p className="section-kicker">Systems I Build</p>
+            <p className="section-kicker">Engineering signals</p>
             <h2 className="max-w-2xl text-3xl font-medium text-white md:text-5xl">
-              Real products for ambiguous environments, not portfolio exercises.
+              The patterns I keep returning to when software meets reality.
             </h2>
           </div>
           <p className="hidden max-w-sm text-right text-sm leading-6 text-white/55 md:block">
@@ -941,13 +941,9 @@ export default function HomePage() {
                 <a className="hero-cta" href="#missions">
                   Explore projects
                 </a>
-                <a className="hero-cta hero-cta-muted" href="/KASHMIRA_PATIL_RESUME_SDE_AI.pdf" download>
+                <a className="hero-cta hero-cta-muted" href="/KASHMIRA_PATIL_RESUME.pdf" download>
                   <FileDown size={16} />
-                  Resume - AI / SDE
-                </a>
-                <a className="hero-cta hero-cta-muted" href="/KASHMIRA_PATIL_RESUME_ANALYTICS.pdf" download>
-                  <FileDown size={16} />
-                  Resume - Analytics
+                  Download resume
                 </a>
                 <a className="hero-cta hero-cta-muted" href="http://www.github.com/kagent2704" target="_blank" rel="noreferrer">
                   <ArrowUpRight size={16} />
@@ -1083,15 +1079,17 @@ export default function HomePage() {
         ))}
       </nav>
 
-      {projects.map((project, index) => (
-        <MissionSection
-          key={project.slug}
-          project={project}
-          index={index}
-          expanded={expandedProject === project.slug}
-          onToggle={() => setExpandedProject((current) => current === project.slug ? null : project.slug)}
-        />
-      ))}
+      <div className="projects-grid">
+        {projects.map((project, index) => (
+          <MissionSection
+            key={project.slug}
+            project={project}
+            index={index}
+            expanded={expandedProject === project.slug}
+            onToggle={() => setExpandedProject((current) => current === project.slug ? null : project.slug)}
+          />
+        ))}
+      </div>
 
       <section className="relative overflow-hidden px-5 pb-24 pt-24 md:px-8 md:pb-32">
         <div className="mx-auto grid max-w-[1600px] gap-8 rounded-[2.25rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(120,255,214,0.12),transparent_38%),linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-8 md:grid-cols-[1.1fr_0.9fr] md:p-12">

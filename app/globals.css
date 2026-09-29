@@ -61,12 +61,11 @@ body::after {
 /* A single spatial system graphic gives the homepage depth without turning every
    surface into a spectacle. It is intentionally CSS-only and respects reduced motion. */
 .real-3d-scene {
-  position: absolute;
-  z-index: 0;
-  top: -4.5rem;
-  right: -2rem;
-  width: 19rem;
-  height: 19rem;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 16rem;
+  margin-bottom: 1rem;
   opacity: 0.9;
   cursor: grab;
 }
@@ -140,6 +139,29 @@ body::after {
   transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
 }
 
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  width: min(100% - 2.5rem, 1540px);
+  margin: 0 auto;
+}
+
+.projects-grid .mission-shell {
+  min-width: 0;
+  margin: 0;
+  max-width: none;
+  padding: 0;
+}
+
+.projects-grid .mission-shell:has(.project-accordion.is-open) {
+  grid-column: 1 / -1;
+}
+
+.projects-grid .mission-grid {
+  margin-top: 1rem;
+}
+
 .project-accordion:hover,
 .project-accordion.is-open {
   border-color: rgba(215, 255, 122, 0.38);
@@ -156,6 +178,8 @@ body::after {
 .project-accordion-action span { color: #d7ff7a; font-size: 1.25rem; line-height: 0.7; }
 
 @media (max-width: 760px) {
+  .projects-grid { grid-template-columns: 1fr; width: min(100% - 1.5rem, 1540px); }
+  .projects-grid .mission-shell:has(.project-accordion.is-open) { grid-column: auto; }
   .project-accordion { grid-template-columns: 2rem minmax(0, 1fr) auto; gap: 0.7rem; padding: 1rem; }
   .project-accordion-stack { display: none; }
   .project-accordion-action { font-size: 0; letter-spacing: 0; }
@@ -294,6 +318,10 @@ a {
   margin: 0 auto;
   max-width: 1600px;
   padding: 3rem 1.25rem 4rem;
+}
+
+.capability-rail {
+  background: rgba(16, 21, 17, 0.62);
 }
 
 .mission-grid {
