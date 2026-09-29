@@ -681,10 +681,19 @@ function HorizontalCapabilityRail() {
   );
 }
 
-function MissionSection({ project, index }: { project: Project; index: number }) {
+function MissionSection({ project, index, expanded, onToggle }: { project: Project; index: number; expanded: boolean; onToggle: () => void }) {
   return (
     <section className="mission-shell" id={project.slug}>
-      <div className="mission-grid">
+      <button type="button" className={`project-accordion ${expanded ? "is-open" : ""}`} onClick={onToggle} aria-expanded={expanded}>
+        <span className="project-accordion-number">{String(index + 1).padStart(2, "0")}</span>
+        <span className="project-accordion-main">
+          <span className="project-accordion-title">{project.title}</span>
+          <span className="project-accordion-positioning">{project.positioning}</span>
+        </span>
+        <span className="project-accordion-stack">{project.stack.slice(0, 3).join(" / ")}</span>
+        <span className="project-accordion-action">{expanded ? "Close" : "Open case study"} <span>{expanded ? "−" : "+"}</span></span>
+      </button>
+      {expanded ? <div className="mission-grid">
         <div className="mission-sticky">
           <p className="section-kicker">{project.eyebrow}</p>
           <h2 className="mt-4 text-4xl font-medium text-white md:text-6xl">{project.title}</h2>
@@ -823,7 +832,7 @@ function MissionSection({ project, index }: { project: Project; index: number })
             </div>
           </motion.div>
         </div>
-      </div>
+      </div> : null}
     </section>
   );
 }
@@ -831,6 +840,7 @@ function MissionSection({ project, index }: { project: Project; index: number })
 export default function HomePage() {
   const heroRef = useRef<HTMLElement | null>(null);
   const [activeAwardIndex, setActiveAwardIndex] = useState<number | null>(null);
+  const [expandedProject, setExpandedProject] = useState<string | null>(projects[0]?.slug ?? null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
@@ -1074,7 +1084,13 @@ export default function HomePage() {
       </nav>
 
       {projects.map((project, index) => (
-        <MissionSection key={project.slug} project={project} index={index} />
+        <MissionSection
+          key={project.slug}
+          project={project}
+          index={index}
+          expanded={expandedProject === project.slug}
+          onToggle={() => setExpandedProject((current) => current === project.slug ? null : project.slug)}
+        />
       ))}
 
       <section className="relative overflow-hidden px-5 pb-24 pt-24 md:px-8 md:pb-32">
